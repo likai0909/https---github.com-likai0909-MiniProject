@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Booking</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <style>
+        .carousel {
+            overflow: hidden;
+            border-radius: 15px;
+            margin: 10px 0px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        /* ========================================================================
+        // Search CSS */
+        .search-bar {
+            display: flex;
+            background-color: white;
+            border-radius: 50px;
+            padding: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+            width: 90%;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+            margin-top: 30px;
+            max-width: 100%;
+            box-sizing: border-box;
+            /* Ensures padding is included in width */
+        }
+
+        .search-input {
+            border: none;
+            outline: none;
+            padding: 10px;
+            margin: 0 5px;
+            flex: 1;
+            border-radius: 50px;
+            min-width: 0;
+            /* Prevents overflow */
+            box-sizing: border-box;
+            /* Ensures padding is included in width */
+        }
+
+
+        /* ========================================================================
+        // Search */
+        .search-button {
+            color: #000000;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            margin: 0 5px;
+            cursor: pointer;
+            background-color: #fff;
+            flex-shrink: 0;
+            /* Prevents button from shrinking */
+            box-sizing: border-box;
+            /* Ensures padding is included in width */
+        }
+
+        /* ========================================================================
+        // Promotions */
+        .promotions {
+            margin-top: 40px;
+        }
+
+        .promotions .card {
+            box-shadow: 0 4px 8px 0 rgba (0, 0, 0, 0.5);
+            transition: 0.3s;
+            border-radius: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .promotions .card img {
+            height: 200px;
+            object-fit: cover;
+            width: 100%;
+            border-radius: 20px;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ========================================================================
+        // Navigation */
+        .navbar-nav {
+            margin: auto;
+            font-size: 1rem;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings:
+                'FILL' 0,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 24;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+
+        /* ========================================================================
+        // Footer */
+        .footer-container {
+            margin-top: 20px;
+        }
+
+        .footer-social img {
+            height: 48px;
+            width: auto;
+        }
+
+        footer {
+            text-align: center;
+        }
+
+        /* ========================================================================
+        // Subscribe */
+        .subscribe-form {
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .subscribe-form h2 {
+            margin-bottom: 20px;
+        }
+
+        .subscribe-form input[type="email"] {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ced4da;
+            width: 50%;
+        }
+
+        .subscribe-form input[type="submit"] {
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            width: 50%;
+        }
+
+        .subscribe-form input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+
+<body>
+
+    <script>
+        // Check if the user has just logged in
+        if (localStorage.getItem('isLoggedIn') === 'true') {
+            // Show welcome message
+            alert('Welcome to VacationHub!');
+            // Remove the flag from local storage
+            localStorage.removeItem('isLoggedIn');
+        }
+    </script>
+    <!------------------------------------------------------------------------------------------------------------>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-sm navbar-dark" style="border: 1px solid #0000;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/" style="font-size: 1.5rem; color: #000000;"><strong>VacationHub</strong></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+                <span class="material-symbols-outlined" style="color: #000000;">
+                    travel_explore
+                </span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" style="color: #000000;" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="color: #000000;" href="/about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="color: #000000;" href="/contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="color: #000000;" href="/addHotel">Add new Hotel</a>
+                    </li>
+                </ul>
+                <span class="material-symbols-outlined">
+                    <a href="/login" style="text-decoration: none;
+                    color: #000000; margin-right: 20px;">login</a></span>
+                <span class="material-symbols-outlined"><a href="/signup" style="text-decoration: none;
+                    color: #000000; margin-right: 10px;">app_registration</a></span>
+            </div>
+        </div>
+    </nav>
+    <!------------------------------------------------------------------------------------------------------------>
+    <!-- Carousel -->
+    <div class="container" style="min-width: 100%; margin: 0; padding: 0;">
+        <div class="row">
+            <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+                <!-- Indicators -->
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"
+                        aria-current="true"></button>
+                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1"></button>
+                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2"></button>
+                </div>
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="https://wallpaperaccess.com/full/4722322.jpg" width="100%" height="750px"
+                            alt="Room 1">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://design-middleeast.com/wp-content/uploads/2021/06/Villa-Type-V5-MED-1-scaled.jpg"
+                            width="100%" height="750px" alt="Room 2">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://photos.mandarinoriental.com/is/image/MandarinOriental/bodrum-villa-melisa-exterior?wid=4000&fmt=jpeg,rgb&qlt=63,0&op_sharpen=0&resMode=sharp2&op_usm=0,0,0,0&icc=sRGB%20IEC61966-2.1&iccEmbed=1&printRes=72&fit=wrap&qlt=45,0"
+                            width="100%" height="750px" alt="Room 3">
+                    </div>
+                </div>
+
+                <!-- Left and right controls -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!------------------------------------------------------------------------------------------------------------>
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <input type="text" placeholder="Search destinations" class="search-input">
+        <input type="date" placeholder="Check in dates" class="search-input">
+        <input type="date" placeholder="Check out dates" class="search-input">
+        <input type="number" placeholder="Add guests" class="search-input">
+        <button class="search-button">
+            <span class="material-symbols-outlined">
+                search
+            </span></button>
+    </div>
+    <!------------------------------------------------------------------------------------------------------------>
+
+    <section class="promotions">
+        <div class="container">
+            <h2 class="text-center mb-4"><strong>PROMOTIONS</strong></h2>
+            <div class="row">
+                <% for(let i=0; i < hotellist.length; i++) { %>
+                    <div class="col-md-3 mb-4">
+                        <div class="card">
+                            <div>
+                                <a href="/hotel/<%= hotellist[i].hotelId %>">
+                                    <img src="<%= hotellist[i].image %>" alt="Hotel Image"
+                                        style="width: 100%; height: 200px; object-fit: cover;">
+                                </a>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <%= hotellist[i].name %>
+                                </h5>
+                                <p><span>SGD </span>
+                                    <%= hotellist[i].price %><span> / night</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <% } %>
+            </div>
+        </div>
+    </section>
+    <!------------------------------------------------------------------------------------------------------------>
+    <div class="subscribe-form">
+        <h2>Subscribe to Our Newsletter</h2>
+        <form action="/subscribe" method="post">
+            <input type="email" name="email" placeholder="Your Email Address" required>
+            <input type="submit" value="Subscribe">
+        </form>
+    </div>
+
+    <!------------------------------------------------------------------------------------------------------------>
+    <!-- Footer -->
+    <section class="footer">
+        <footer>
+            <div class="footer-container">
+                <div class="footer-about">
+                    <h3>About Us</h3>
+                    <p>We are dedicated to providing the best booking experiences. <a href="/about">About us</a></p>
+
+                </div>
+                <div class="footer-social">
+                    <h3>Follow Us</h3>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Facebook_Logo_2023.png"
+                        alt="Facebook">
+                    <img src="https://th.bing.com/th/id/OIP.xa0FgRBsvMi7bmVNCDYsCgHaHa?rs=1&pid=ImgDetMain"
+                        alt="Instagram" style="margin-left: 30px;">
+                    <img src="https://static.vecteezy.com/system/resources/previews/016/716/450/original/tiktok-icon-free-png.png"
+                        alt="Tiktok" style="margin-left: 30px;">
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p style="margin-top: 15px;">&copy; 2024 VacationHub. All rights reserved.</p>
+            </div>
+        </footer>
+    </section>
+
+
+
+</body>
+
+</html>

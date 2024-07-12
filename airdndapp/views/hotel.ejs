@@ -1,0 +1,181 @@
+<!-- product.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <title>Hotel Database</title>
+
+  <style>
+      /* ========================================================================
+        // Navigation */
+        .navbar-nav {
+            margin: auto;
+            font-size: 1rem;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings:
+                'FILL' 0,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 24;
+        }
+
+        .navbar-nav {
+            margin: auto;
+            
+        }
+
+        /* ========================================================================
+        // Details */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Ensures the container takes up the full viewport height */
+            padding: 20px;
+        }
+
+        .Details {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 600px; /* Adjust as needed */
+            margin-top: 20px;
+        }
+
+        .Details .card {
+            width: 100%;
+            max-width: 400px; /* Adjust as needed */
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .Details .card img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px 10px 0 0; /* Rounded corners on top only */
+        }
+
+        .Details .card-body {
+            padding: 20px;
+        }
+
+        .add-to-cart-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .add-to-cart-button:hover {
+            background-color: #0056b3;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+            margin-top: 10px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .button-click{
+            margin-top : 40px;
+        }
+</style>
+</head>
+
+<body>
+<!------------------------------------------------------------------------------------------------------------>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-sm navbar-dark" style="border: 1px solid #0000;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/" style="font-size: 1.5rem; color: #000000;"><strong>VacationHub</strong></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+                <span class="material-symbols-outlined" style="color: #000000;">
+                    travel_explore
+                </span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" style="color: #000000;" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="color: #000000;" href="/about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="color: #000000;" href="/contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="color: #000000;" href="/addHotel">Add new Hotel</a>
+                    </li>
+                </ul>
+                <span class="material-symbols-outlined">
+                    <a href="/login" style="text-decoration: none;
+                    color: #000000; margin-right: 20px;">login</a></span>
+                <span class="material-symbols-outlined"><a href="/signup" style="text-decoration: none;
+                    color: #000000; margin-right: 10px;">app_registration</a></span>
+            </div>
+        </div>
+    </nav>
+
+<div class="container">
+    <% if (hotel) { %>
+    <div class="Details">
+        <div class="card" style="margin-top: 100px;">
+            <img src="<%= hotel.image %>" alt="Hotel Image">
+            <div class="card-body">
+                <p style="margin-top: 30px;"><b>Name:</b><br>
+                    <h5 class="card-title"><strong><%= hotel.name %></strong></h5>
+                </p>
+                <p style="margin-top: 30px;"><b>Price:</b><br>
+                    <%= hotel.price%>
+                </p>
+                <p style="margin-top: 30px;"><b>Description:</b><br>
+                    <%= hotel.description %>
+                </p>
+                <p style="margin-top: 30px;"><b>Address:</b><br>
+                    <%= hotel.address %>
+                </p>
+                <div class = "button-click">
+                <button class="add-to-cart-button">Add to Cart</button>
+                <a href="/editHotel/<%= hotel.hotelId %>" style="margin-left: 30px; text-decoration: none; color:black;"> Update Hotel </a>
+                <a href="/" style="margin-left: 10px; text-decoration: none; color:black;" >Back</a>
+                <a href="/deleteHotel/<%= hotel.hotelId %>" onclick="return confirm('Are you sure you want to delete this hotel?')" style="margin-left: 10px; text-decoration: none; color:black;" >Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% } else { %>
+    <p>No hotel found.</p>
+    <% } %>
+</div>
+
+
+    
+
+</body>
+
+</html>
