@@ -37,7 +37,7 @@ app.get('/', (req, res) => {
             console.error('Database query error:', error.message);
             return res.status(500).send('Error Retrieving hotellist');
         }
-        res.render('login', {hotellist: results});
+        res.render('index', {hotellist: results});
         
     });
 });
