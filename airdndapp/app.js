@@ -7,10 +7,10 @@ const bodyParser = require('body-parser');
 const app = express();
 
 const connection = mysql.createConnection({
-    host: 'sql.freedb.tech',
-    user: 'freedb_admin2',
-    password: 'Db9kJ#ZV4ArAN5?',
-    database: 'freedb_hotellist'
+    host: 'pro.freedb.tech', 
+    user: 'teamfive',
+    password: 'mG$&mXwD#?tt$Y9',
+    database: 'teamfivedb'
 
     });
     connection.connect((err) => {
