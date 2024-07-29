@@ -7,10 +7,10 @@ const bodyParser = require('body-parser');
 const app = express();
 
 const connection = mysql.createConnection({
-    host: 'sql12.freesqldatabase.com',
-    user: 'sql12719370',
-    password: '9tr1qjpcnm',
-    database: 'sql12719370'
+    host: 'sql.freedb.tech',
+    user: 'freedb_admin2',
+    password: 'Db9kJ#ZV4ArAN5?',
+    database: 'freedb_hotellist'
 
     });
     connection.connect((err) => {
@@ -29,6 +29,7 @@ app.use(express.static('public'));
 // Middleware to parse request bodies
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
 app.get('/', (req, res) => {
     const sql = 'SELECT * FROM hotellist';
 
@@ -42,7 +43,6 @@ app.get('/', (req, res) => {
     });
 });
 // get hotel details by id
-
 
 
 app.get('/hotel/:hotelId', (req, res) => {
